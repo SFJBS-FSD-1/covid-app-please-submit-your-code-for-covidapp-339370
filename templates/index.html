@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>COVID APP</title><!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"><!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script><!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="col-md-6 col-md-offset-3">
+    <h1> Covid Summary Data from John Hopkins</h1>
+    <h2>
+        <a href="https://api.covid19api.com/countries" target="_blank">Click Here for country reference list</a>
+    </h2>
+<form method="post" action="/">
+    <input type="text" name="country" placeholder="enter a country name">
+    <button type="submit">SUBMIT</button>
+</form>
+    {% if data.status_code==200 %}
+        <div class="col-md-6 col-md-offset-3">
+           <h2>Country : {{  data.country_name  }}</h2>
+           <h3>Total Cases Confirmed: {{  data.total_confirmed  }}</h3>
+           <h3>Total Deaths: {{  data.total_deaths  }}</h3>
+    {% elif data.status_code==404 %}
+            <h3 style="color:red">{{  data.message  }}</h3>
+    {% else %}
+    {% endif %}
+</div>
+</div>
+</body>
+</html>
